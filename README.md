@@ -6,11 +6,11 @@
 
 # Predicting Dubai Residential Property Prices Using Machine Learning
 
-An end-to-end regression pipeline trained on 50,000 Dubai secondary-market property listings — from raw data to a tuned, persisted model with documented, leakage-safe preprocessing.
+An end-to-end regression pipeline trained on 50,000 Dubai secondary-market property listings. 
 
 ## Project Overview
 
-This project predicts the listed sale price (in USD) of a residential property in Dubai from its physical characteristics, location, and listing attributes. Property price prediction matters to three groups directly: a buyer wants to know if a listing is fairly priced, a seller wants to know what to list at, and an agent wants to identify under- or over-priced inventory. The pipeline covers data cleaning, exploratory analysis, leakage-aware feature engineering, and a three-way model comparison (Linear Regression, Random Forest, XGBoost), with the best model tuned via cross-validated hyperparameter search. The final tuned XGBoost model explains 88.8% of price variance on held-out data (R² = 0.888) and predicts within roughly ±$162,554 on average (MAE) — a large improvement over a naive "always predict the average price" baseline, detailed below.
+This project predicts the listed sale price (in USD) of a residential property in Dubai from its physical characteristics, location, and listing attributes. The pipeline covers data cleaning, analysis and a three-way model comparison (Linear Regression, Random Forest, XGBoost), with the best model tuned via cross-validated hyperparameter search. The final tuned XGBoost model explains 88.8% of price variance on held-out data (R² = 0.888) and predicts within roughly ±$162,554 on average (MAE). 
 
 ## Key Results
 
@@ -25,8 +25,6 @@ This project predicts the listed sale price (in USD) of a residential property i
 | **XGBoost (tuned)** | **0.913** | **0.888** | **$403,817** | **$162,554** |
 
 Every trained model clears the baseline by a wide margin. Random Forest shows the largest train/test gap of the three ML models (0.971 → 0.849), a sign of overfitting; XGBoost generalizes better and was selected as the final model — see [Methodology](#methodology) for why.
-
-**A note on currency:** all prices in this project are reported in **USD**, matching the source dataset. No currency conversion happens anywhere in the cleaning, EDA, or modeling pipeline — see [`docs/decisions.md`](docs/decisions.md) for the full reasoning. An AED conversion, if ever needed for a UAE-facing audience, would be applied only at the display/business-framing layer, never inside the model.
 
 ## Visualizations
 
@@ -239,21 +237,10 @@ Train and test R² are both reported for every model, per standard practice — 
 ## Limitations and Assumptions
 
 - **Listed, not transacted, prices.** The target is the listed sale price; actual transaction prices may differ by some margin this project cannot measure.
-- **Currency is USD**, as delivered by the source dataset — no AED conversion is applied anywhere in the pipeline (see [`docs/decisions.md`](docs/decisions.md)).
-- **This dataset appears synthetically generated** (Section on Dataset Description above), so findings describe this dataset's internal structure, not a validated claim about the real Dubai property market.
-- **No `bathrooms` or `developer`/`building` columns exist** in this dataset — both plausibly matter for real-world pricing but could not be modeled here.
 - **`location_tier` uses only 4 tiers** derived purely from historical median price; it does not capture street-level, building-level, or landmark-proximity variation beyond `to_burj_khalifa_km`.
 - **The model treats feature-price relationships as stable across property types**, but villa and apartment pricing likely have somewhat different underlying drivers in reality.
 - **Error variance increases for high-end properties** — the model is least reliable exactly where the financial stakes of a wrong prediction are largest.
 
-## Future Improvements
-
-- **Streamlit demo:** the saved model (`models/best_model_xgboost.joblib`) is already a fully self-contained pipeline — wrapping it in a small Streamlit app would let a non-technical user get a live prediction from typed-in property details.
-- **SHAP explainability:** `shap` is already installed; a SHAP summary plot would give per-prediction explanations beyond the global feature-importance ranking shown here.
-- **Geospatial features:** using `lat`/`lon` more directly (e.g. distance to specific landmarks or metro stations, or unsupervised clustering) could refine the location signal beyond the current 4-tier `zone` grouping.
-- **Real transaction-price data:** if Dubai Land Department transaction records became available, retraining on that target would directly address the listed-vs-transacted-price limitation.
-- **Ensemble/stacking:** combining Linear Regression, Random Forest, and XGBoost predictions via a meta-model typically improves on any single model.
-- **Classification extension:** engineering a binary "is this property priced below predicted fair value" target would turn this into a deal-finder tool, as noted in the original project blueprint.
 
 ## License
 
