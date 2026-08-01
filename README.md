@@ -26,6 +26,10 @@ This project predicts the listed sale price (in USD) of a residential property i
 
 Every trained model clears the baseline by a wide margin. Random Forest shows the largest train/test gap of the three ML models (0.971 → 0.849), a sign of overfitting; XGBoost generalizes better and was selected as the final model — see [Methodology](#methodology) for why.
 
+## Interactive Demo
+
+**Live Demo:** [https://dubai-property-price-prediction-86swvuwhpkazpgbr2iwnw9.streamlit.app/](https://dubai-property-price-prediction-86swvuwhpkazpgbr2iwnw9.streamlit.app/)
+
 ## Visualizations
 
 **Target variable distribution** — raw `price_usd` is heavily right-skewed (skew 3.69); a `log1p` transform normalizes it almost completely (skew -0.05), which motivated training all three ML models on the log-transformed target.
