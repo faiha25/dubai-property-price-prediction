@@ -38,3 +38,10 @@ any point in the pipeline.
   documented conversion applied for display purposes only, using a
   clearly stated, dated FX rate — never applied to the modeling
   pipeline itself.
+
+**Addendum (2026-08-01):** implemented in `app.py`. The Streamlit demo
+loads the model and predicts entirely in USD, then converts the single
+final number to AED only for the on-screen result, using the UAE
+Central Bank's official fixed peg (`AED_PER_USD = 3.6725`, pegged since
+1997 — not a floating market rate that could go stale). The model
+pipeline itself never sees or produces AED.
