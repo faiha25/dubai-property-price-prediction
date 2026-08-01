@@ -9,9 +9,12 @@ data/raw/*
 data/processed/*
 !data/processed/.gitkeep
 
-# Trained models
+# Trained models — excluded by default (can be large/regeneratable),
+# but the final tuned model is committed so the Streamlit demo (app.py)
+# works from a fresh clone without requiring a local training run.
 models/*
 !models/.gitkeep
+!models/best_model_xgboost.joblib
 
 # Python
 __pycache__/
