@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Reveal from "@/components/reveal";
-import {
-  MODEL_COMPARISON,
-  FEATURE_IMPORTANCE,
-  KEY_FINDINGS,
-  LIMITATIONS,
-} from "@/lib/model-results";
+import { MODEL_COMPARISON, FEATURE_IMPORTANCE } from "@/lib/model-results";
 
 export const metadata: Metadata = {
-  title: "Methodology — Dubai Property Valuation",
+  title: "Methodology: Dubai Property Valuation",
 };
 
 const maxImportance = Math.max(...FEATURE_IMPORTANCE.map((f) => f.importance));
@@ -27,7 +22,7 @@ export default function MethodologyPage() {
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-ink-soft">
           A gradient-boosted regression model (XGBoost), trained on 50,000
           Dubai secondary-market listings (2020&ndash;2026). Every figure below
-          is taken directly from the executed modeling notebook — none are
+          is taken directly from the executed modeling notebook, none are
           estimated for this page.
         </p>
       </Reveal>
@@ -39,11 +34,11 @@ export default function MethodologyPage() {
             {[
               {
                 title: "Cleaning",
-                body: "The raw dataset was already unusually clean — zero duplicate rows, zero formatting issues. Floor/total_floors missingness (35.6% of rows) was confirmed structural — villas have no floor number — and preserved as null rather than imputed.",
+                body: "The raw dataset was already unusually clean, with zero duplicate rows and zero formatting issues. Floor/total_floors missingness (35.6% of rows) was confirmed structural, since villas have no floor number, and preserved as null rather than imputed.",
               },
               {
                 title: "Feature engineering",
-                body: "Row-level features (size category, property age, log area, luxury indicator) were built from structural attributes only. Location tier — zones grouped by historical median price — is fit inside the modeling pipeline on the training fold only, so it can never leak validation-fold prices across cross-validation splits.",
+                body: "Row-level features (size category, property age, log area, luxury indicator) were built from structural attributes only. Location tier, which groups zones by historical median price, is fit inside the modeling pipeline on the training fold only, so it can never leak validation-fold prices across cross-validation splits.",
               },
               {
                 title: "Baseline and model comparison",
@@ -51,7 +46,7 @@ export default function MethodologyPage() {
               },
               {
                 title: "Tuning and evaluation",
-                body: "Only XGBoost — the model with the best test R² and the smallest train/test gap — was tuned, via RandomizedSearchCV across 30 parameter combinations on 5-fold cross-validation.",
+                body: "Only XGBoost, the model with the best test R² and the smallest train/test gap, was tuned, via RandomizedSearchCV across 30 parameter combinations on 5-fold cross-validation.",
               },
             ].map((step, i) => (
               <li key={step.title} className="grid gap-2 sm:grid-cols-[10rem_1fr] sm:gap-8">
@@ -120,7 +115,7 @@ export default function MethodologyPage() {
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-soft">
             Gain-based importance from the tuned XGBoost model. A separate
             SHAP analysis ranks <code className="text-ink">log_area_sqft</code>{" "}
-            above <code className="text-ink">bedrooms</code> — the two measures
+            above <code className="text-ink">bedrooms</code>, and the two measures
             disagree on the top feature, which is expected: gain reflects
             average loss reduction per split, SHAP reflects typical
             per-prediction impact.
@@ -149,7 +144,7 @@ export default function MethodologyPage() {
       </Reveal>
 
       <Reveal delay={0.14}>
-        <section className="mt-20 grid gap-16 sm:grid-cols-2">
+        <section className="mt-20 mb-8 grid gap-16 sm:grid-cols-2">
           <figure>
             <div className="border border-line">
               <Image
@@ -177,44 +172,10 @@ export default function MethodologyPage() {
               />
             </div>
             <figcaption className="mt-3 text-xs leading-relaxed text-muted">
-              SHAP summary — each point is one prediction. Values are in
+              SHAP summary, each point is one prediction. Values are in
               log-price units, not dollars.
             </figcaption>
           </figure>
-        </section>
-      </Reveal>
-
-      <Reveal delay={0.16}>
-        <section className="mt-20">
-          <h2 className="font-serif text-2xl text-ink">Key findings</h2>
-          <ul className="mt-8 space-y-4">
-            {KEY_FINDINGS.map((finding) => (
-              <li
-                key={finding}
-                className="border-t border-line pt-4 text-sm leading-relaxed text-ink-soft"
-              >
-                {finding}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </Reveal>
-
-      <Reveal delay={0.18}>
-        <section className="mt-20 mb-8">
-          <h2 className="font-serif text-2xl text-ink">
-            Limitations and assumptions
-          </h2>
-          <ul className="mt-8 space-y-4">
-            {LIMITATIONS.map((limitation) => (
-              <li
-                key={limitation}
-                className="border-t border-line pt-4 text-sm leading-relaxed text-ink-soft"
-              >
-                {limitation}
-              </li>
-            ))}
-          </ul>
         </section>
       </Reveal>
     </div>

@@ -6,7 +6,7 @@ const STEPS = [
   {
     number: "01",
     title: "Describe the property",
-    body: "Zone, size, type, condition, and a handful of listing attributes — the same fields the model was trained on.",
+    body: "Zone, size, type, condition, and a handful of listing attributes: the same fields the model was trained on.",
   },
   {
     number: "02",
@@ -16,7 +16,7 @@ const STEPS = [
   {
     number: "03",
     title: "Receive an estimate",
-    body: "A price in AED and USD, shown with the model's typical error margin — never a false-precision single number.",
+    body: "A price in AED and USD, shown with the model's typical error margin, never a false-precision single number.",
   },
 ];
 
@@ -39,7 +39,7 @@ export default function Home() {
           <p className="mt-8 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
             A gradient-boosted regression model trained on secondary-market
             listings across Dubai, explaining 88.8% of price variance on
-            held-out data. Built as a portfolio project — transparent about
+            held-out data. Built as a portfolio project, transparent about
             its data, its methodology, and its limits.
           </p>
         </Reveal>

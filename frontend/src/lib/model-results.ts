@@ -61,21 +61,3 @@ export const FEATURE_IMPORTANCE = [
   { feature: "log_area_sqft", importance: 0.089 },
   { feature: "location_tier (tier 3)", importance: 0.073 },
 ] as const;
-
-export const KEY_FINDINGS = [
-  "Location produces roughly a 30x price spread across zones — the single largest categorical price driver in the data.",
-  "Property type produces a roughly 21x spread independent of location, from studios to 6-bedroom villas.",
-  "Villas price far above apartments overall, and the gap holds within every major zone — location and property-category effects are additive.",
-  "Bedroom count is the single strongest individual feature, but not a clean linear driver: 4BR penthouses out-price 4-bedroom villas.",
-  "Floor position shows almost no relationship with price, counter to common real-world intuition about height and view premiums.",
-  "Sea-view listings price more than 2.5x above community-view listings.",
-  "Prediction error grows for high-end properties — the model is least reliable exactly where the financial stakes are largest.",
-] as const;
-
-export const LIMITATIONS = [
-  "The target is the listed sale price, not a confirmed transaction price — actual sale prices may differ by some margin this project cannot measure.",
-  "There is no building or developer field. Two identically-specified units in different buildings are treated identically, though real buyer behavior differentiates them.",
-  "Location is captured via a 4-tier zone encoding plus straight-line distance to one landmark (Burj Khalifa) — it does not capture street-level or building-level variation.",
-  "This dataset shows signs of being synthetically generated (zero duplicate rows, only 6 distinct construction years, a zone-price hierarchy that doesn't fully mirror the real Dubai market). Model behavior describes this dataset's structure, not a validated claim about the real market.",
-  "Error variance increases for high-end properties, where a wrong estimate matters most financially.",
-] as const;

@@ -17,9 +17,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Dubai Property Valuation — Data-driven price estimates",
+  title: "Dubai Property Valuation: Data-driven price estimates",
   description:
-    "A machine learning model estimating Dubai secondary-market residential property prices, trained on 50,000 listings. Portfolio project — not a substitute for professional valuation.",
+    "A machine learning model estimating Dubai secondary-market residential property prices, trained on 50,000 listings. Portfolio project, not a substitute for professional valuation.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

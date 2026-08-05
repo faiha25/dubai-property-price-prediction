@@ -260,7 +260,7 @@ export default function ValuationForm() {
               animate={{ opacity: 1 }}
               className="border-t border-line pt-10 text-sm leading-relaxed text-muted"
             >
-              Fill in a property&apos;s details and submit the form — the
+              Fill in a property&apos;s details and submit the form, and the
               trained pipeline will return an estimate here, alongside its
               typical error margin.
             </motion.div>

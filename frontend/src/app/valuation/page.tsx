@@ -3,7 +3,7 @@ import Reveal from "@/components/reveal";
 import ValuationForm from "@/components/valuation-form";
 
 export const metadata: Metadata = {
-  title: "Get a Valuation — Dubai Property Valuation",
+  title: "Get a Valuation: Dubai Property Valuation",
 };
 
 export default function ValuationPage() {
@@ -18,7 +18,7 @@ export default function ValuationPage() {
         </h1>
         <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft">
           Describe the property below. The form mirrors the exact fields the
-          model was trained on — nothing more is asked, and nothing here is
+          model was trained on, nothing more is asked, and nothing here is
           used beyond producing the estimate.
         </p>
       </Reveal>

@@ -52,14 +52,14 @@ export default function ValuationResult({
         AED {formatPrice(animatedAed)}
       </p>
       <p className="mt-3 text-sm text-ink-soft">
-        Equivalent to USD {formatPrice(result.predicted_price_usd)} — the
+        Equivalent to USD {formatPrice(result.predicted_price_usd)}, the
         model&apos;s native currency, shown here at the fixed AED/USD peg for
         display only.
       </p>
       <p className="mt-6 max-w-md text-xs leading-relaxed text-muted">
         Typical model error on held-out test data: &plusmn; USD{" "}
         {result.test_mae_usd.toLocaleString("en-US")} (MAE). Treat this as an
-        estimate range, not an exact figure — and not a substitute for a
+        estimate range, not an exact figure, and not a substitute for a
         professional valuation.
       </p>
     </motion.div>
