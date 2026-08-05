@@ -28,7 +28,7 @@ Every trained model clears the baseline by a wide margin. Random Forest shows th
 
 ## Interactive Demo
 
-**Live Demo:** [https://dubai-property-price-prediction-86swvuwhpkazpgbr2iwnw9.streamlit.app/](https://dubai-property-price-prediction-86swvuwhpkazpgbr2iwnw9.streamlit.app/)
+**Live Demo:** [https://dubai-property-price-prediction.vercel.app/](https://dubai-property-price-prediction.vercel.app/)
 
 ## Visualizations
 
